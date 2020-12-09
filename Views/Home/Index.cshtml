@@ -1,0 +1,56 @@
+﻿@model App13.Models.Registration
+@using PagedList.Mvc;
+@using App13.Models;
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @id = "NurseryRegistrationForm", @class = "form-horizontal", @role = "form", enctype = "multipart/form-data", @autocomplete = "off" }))
+    {
+        <label>Name</label>
+        @Html.TextBoxFor(m => Model.Name)<br />
+        <label>Mobile</label>
+        @Html.TextBoxFor(m => Model.Mobile)<br />
+        <label>Gender</label>
+        @Html.RadioButtonFor(m => Model.Gender, "Male")<label>Male</label><br />
+        @Html.RadioButtonFor(m => Model.Gender, "Female") <label>Female</label><br />
+        <label>Email</label>
+        @Html.TextBoxFor(m => Model.Email)<br />
+        <label>Adress</label>
+        @Html.TextBoxFor(m => Model.Adress)<br />
+
+        <input type="submit" value="Submit Data" />
+
+    }
+    @if (@ViewBag.ReegisteredUser != null)
+    {
+<table border="1">
+    <thead>
+        <tr>
+            <th>S No.</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Gender</th>
+            <th>Address</th>
+        </tr>
+    </thead>
+    @foreach (var item in @ViewBag.ReegisteredUser)
+    {
+
+    <tbody>
+        <tr>
+            <td>@item.ProfileId</td>
+            <td>@item.Name</td>
+            <td>@item.Email</td>
+            <td>@item.Mobile</td>
+            <td>@item.Gender,</td>
+            <td>@item.Adress</td>
+        </tr>
+    </tbody>
+    }
+</table>
+    
+    }
+</div>
